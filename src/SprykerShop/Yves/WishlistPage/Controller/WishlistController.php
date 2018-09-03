@@ -293,7 +293,11 @@ class WishlistController extends AbstractController
     {
         $wishlistItems = [];
         foreach ($wishlistOverviewResponse->getItems() as $wishlistItemTransfer) {
-            $wishlistItems[] = $this->createProductView($wishlistItemTransfer);
+            $productViewTransfer = $this->createProductView($wishlistItemTransfer);
+            if ($this->isEmptyProductViewTransfer($productViewTransfer)) {
+                continue;
+            }
+            $wishlistItems[] = $productViewTransfer;
         }
 
         return $wishlistItems;
@@ -304,7 +308,7 @@ class WishlistController extends AbstractController
      *
      * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
-    protected function createProductView(WishlistItemTransfer $wishlistItemTransfer)
+    protected function createProductView(WishlistItemTransfer $wishlistItemTransfer): ProductViewTransfer
     {
         $productConcreteStorageData = $this->getFactory()
             ->getProductStorageClient()
@@ -326,5 +330,15 @@ class WishlistController extends AbstractController
         }
 
         return $productViewTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ProductViewTransfer
+     *
+     * @return bool
+     */
+    protected function isEmptyProductViewTransfer(ProductViewTransfer $productViewTransfer): bool
+    {
+        return (bool) $productViewTransfer->getIdProductConcrete();
     }
 }
