@@ -339,6 +339,6 @@ class WishlistController extends AbstractController
      */
     protected function isEmptyProductViewTransfer(ProductViewTransfer $productViewTransfer): bool
     {
-        return (bool) $productViewTransfer->getIdProductConcrete();
+        return  !$productViewTransfer->getIdProductConcrete();
     }
 }
