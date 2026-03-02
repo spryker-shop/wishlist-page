@@ -37,11 +37,6 @@ class WishlistFormType extends AbstractType
      */
     protected const VALIDATION_NOT_BLANK_MESSAGE = 'validation.not_blank';
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -85,9 +80,6 @@ class WishlistFormType extends AbstractType
         return $this;
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraints\NotBlank
-     */
     protected function createNotBlankConstraint(): NotBlank
     {
         return new NotBlank(['message' => static::VALIDATION_NOT_BLANK_MESSAGE]);

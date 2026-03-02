@@ -156,11 +156,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addAddToWishlistRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/add-to-wishlist', 'WishlistPage', 'AddToWishlist', 'indexAction');
@@ -169,11 +164,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addWishlistOverviewRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist', 'WishlistPage', 'WishlistOverview', 'indexAction');
@@ -182,11 +172,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addUpdateWishlistRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/update/{wishlistName}', 'WishlistPage', 'WishlistOverview', 'updateAction');
@@ -196,11 +181,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addDeleteWishlistRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/delete/{wishlistName}', 'WishlistPage', 'WishlistOverview', 'deleteAction');
@@ -211,11 +191,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addWishlistDetailsRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/details/{wishlistName}', 'WishlistPage', 'Wishlist', 'indexAction');
@@ -225,11 +200,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addAddItemRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/add-item', 'WishlistPage', 'Wishlist', 'addItemAction');
@@ -239,11 +209,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addRemoveItemRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/remove-item', 'WishlistPage', 'Wishlist', 'removeItemAction');
@@ -253,11 +218,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addMoveToCartRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/move-to-cart', 'WishlistPage', 'Wishlist', 'moveToCartAction');
@@ -268,11 +228,6 @@ class WishlistPageRouteProviderPlugin extends AbstractRouteProviderPlugin
         return $routeCollection;
     }
 
-    /**
-     * @param \Spryker\Yves\Router\Route\RouteCollection $routeCollection
-     *
-     * @return \Spryker\Yves\Router\Route\RouteCollection
-     */
     protected function addMoveAllAvailableToCartRoute(RouteCollection $routeCollection): RouteCollection
     {
         $route = $this->buildRoute('/wishlist/move-all-available-to-cart/{wishlistName}', 'WishlistPage', 'Wishlist', 'moveAllAvailableToCartAction');

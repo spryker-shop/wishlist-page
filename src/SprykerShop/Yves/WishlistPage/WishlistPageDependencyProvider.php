@@ -75,11 +75,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCustomerClient(Container $container): Container
     {
         $container->set(static::CLIENT_CUSTOMER, function (Container $container) {
@@ -89,11 +84,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addWishlistClient(Container $container): Container
     {
         $container->set(static::CLIENT_WISHLIST, function (Container $container) {
@@ -131,11 +121,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addWishlistViewWidgetPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_WISHLIST_VIEW_WIDGETS, function () {
@@ -145,11 +130,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addWishlistItemRequestExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_WISHLIST_ITEM_REQUEST_EXPANDERS, function () {
@@ -159,11 +139,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addWishlistItemMetaFormExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_WISHLIST_ITEM_META_FORM_EXPANDERS, function () {
@@ -173,11 +148,6 @@ class WishlistPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addGlossaryStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_GLOSSARY_STORAGE, function (Container $container) {

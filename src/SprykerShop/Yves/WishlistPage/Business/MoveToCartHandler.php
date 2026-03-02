@@ -26,10 +26,6 @@ class MoveToCartHandler implements MoveToCartHandlerInterface
      */
     protected $customerClient;
 
-    /**
-     * @param \SprykerShop\Yves\WishlistPage\Dependency\Client\WishlistPageToWishlistClientInterface $wishlistClient
-     * @param \SprykerShop\Yves\WishlistPage\Dependency\Client\WishlistPageToCustomerClientInterface $customerClient
-     */
     public function __construct(
         WishlistPageToWishlistClientInterface $wishlistClient,
         WishlistPageToCustomerClientInterface $customerClient

@@ -446,11 +446,6 @@ class WishlistController extends AbstractController
         return $productViewTransfer->fromArray($productViewData, true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\WishlistItemTransfer $wishlistItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductViewTransfer
-     */
     protected function prepareUnavailableProduct(WishlistItemTransfer $wishlistItemTransfer): ProductViewTransfer
     {
         $productViewTransfer = new ProductViewTransfer();
@@ -515,11 +510,6 @@ class WishlistController extends AbstractController
         return $wishlistOverviewResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\WishlistOverviewResponseTransfer $wishlistOverviewResponseTransfer
-     *
-     * @return void
-     */
     protected function handleWishlistErrors(WishlistOverviewResponseTransfer $wishlistOverviewResponseTransfer): void
     {
         foreach ($wishlistOverviewResponseTransfer->getErrors() as $messageTransfer) {

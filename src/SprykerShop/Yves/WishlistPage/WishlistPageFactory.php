@@ -32,25 +32,16 @@ use Symfony\Component\Form\FormInterface;
 
 class WishlistPageFactory extends AbstractFactory
 {
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Dependency\Client\WishlistPageToCustomerClientInterface
-     */
     public function getCustomerClient(): WishlistPageToCustomerClientInterface
     {
         return $this->getProvidedDependency(WishlistPageDependencyProvider::CLIENT_CUSTOMER);
     }
 
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Dependency\Client\WishlistPageToGlossaryStorageClientInterface
-     */
     public function getGlossaryStorageClient(): WishlistPageToGlossaryStorageClientInterface
     {
         return $this->getProvidedDependency(WishlistPageDependencyProvider::CLIENT_GLOSSARY_STORAGE);
     }
 
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Form\Cloner\FormCloner
-     */
     public function getFormCloner(): FormCloner
     {
         return new FormCloner();
@@ -149,25 +140,16 @@ class WishlistPageFactory extends AbstractFactory
         return new AddAllAvailableProductsToCartFormType();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ShopContextTransfer
-     */
     public function getShopContext(): ShopContextTransfer
     {
         return $this->createShopContextResolver()->resolve();
     }
 
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Resolver\ShopContextResolverInterface
-     */
     public function createShopContextResolver(): ShopContextResolverInterface
     {
         return new ShopContextResolver($this->getContainer());
     }
 
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Expander\WishlistItem\WishlistItemExpanderIterface
-     */
     public function createWishlistItemExpander(): WishlistItemExpanderIterface
     {
         return new WishlistItemExpander(
@@ -192,9 +174,6 @@ class WishlistPageFactory extends AbstractFactory
         return new MoveToCartHandler($this->getWishlistClient(), $this->getCustomerClient());
     }
 
-    /**
-     * @return \SprykerShop\Yves\WishlistPage\Dependency\Client\WishlistPageToWishlistClientInterface
-     */
     public function getWishlistClient(): WishlistPageToWishlistClientInterface
     {
         return $this->getProvidedDependency(WishlistPageDependencyProvider::CLIENT_WISHLIST);
