@@ -330,7 +330,10 @@ class WishlistController extends AbstractController
         if (!$customerTransfer) {
             return null;
         }
-        $wishlistName = $request->get(static::PARAM_WISHLIST_NAME) ?: static::DEFAULT_NAME;
+        $wishlistName = $request->get(static::PARAM_WISHLIST_NAME);
+        if ($wishlistName === null || $wishlistName === '') {
+            $wishlistName = static::DEFAULT_NAME;
+        }
 
         $sku = (string)$request->query->get(static::PARAM_SKU) ?: null;
         $wishlistItemTransfer = (new WishlistItemTransfer())
