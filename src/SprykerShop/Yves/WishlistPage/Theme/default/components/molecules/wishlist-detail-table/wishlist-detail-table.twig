@@ -26,6 +26,8 @@
                 </tr>
             </thead>
             <tbody>
+            {# Looked up once for the whole list: the tracking details are only worth building while the storefront tracks user actions. #}
+            {% set isUserActionTrackingEnabled = findWidget('TraceableEventWidget').parameters.isUserActionTrackingEnabled ?? false %}
             {% for idWishlistItem, item in data.wishlistItems %}
                 {% set isItemAvailable = item.available is defined and item.available and item.price is defined and item.price is not null %}
                 {% set productDiscontinuedWidget = findWidget('ProductDiscontinuedWidget', [item.sku]) %}
@@ -33,7 +35,28 @@
                 {% if isDiscontinued is not null %}
                     {% set isItemAvailable = not isDiscontinued and isItemAvailable %}
                 {% endif %}
-                <tr>
+
+                {# An item that can be moved to the cart, as the traceable events report it: one piece, the price in cents. #}
+                {% set trackingDetails = null %}
+                {% if isItemAvailable and isUserActionTrackingEnabled %}
+                    {% set trackingCategories = [] %}
+                    {% for categoryName in item.categoryPath | default([]) %}
+                        {% set trackingCategories = trackingCategories | merge([{ name: categoryName }]) %}
+                    {% endfor %}
+                    {% set trackingDetails %}{% include model('tracking-details') ignore missing with { product: {
+                        sku: item.sku,
+                        abstractSku: item.abstractSku | default(null),
+                        name: item.name,
+                        abstractName: item.abstractName | default(null),
+                        brand: item.brand | default(null),
+                        variant: item.selectedVariantAttributes | default([]) | reduce((values, value) => values | merge([value]), []),
+                        categories: trackingCategories,
+                        price: item.price,
+                        quantity: 1,
+                    } } only %}{% endset %}
+                {% endif %}
+
+                <tr{% if trackingDetails %} tracking-details="{{ trackingDetails }}"{% endif %}>
                     <td>
                         {% set imageUrl = item.images[0].externalUrlSmall %}
                         {% if imageUrl %}
@@ -108,7 +131,7 @@
                                         {% set wishlistMoveToCartForm = data.wishlistMoveToCartFormClone.getForm.createView %}
 
                                         {{ form_start(wishlistMoveToCartForm, { 'action': path('wishlist/move-to-cart', {sku: item.sku, 'wishlist-name': data.wishlistName}), 'name': 'addToCart_' ~ loop.index, 'attr': {'id': 'addToCart_' ~ loop.index, 'class': 'col'}}) }}
-                                            <button class="link" title="{{ 'customer.account.wishlist.add-to-cart' | trans }}">
+                                            <button class="link js-wishlist-move-to-cart" title="{{ 'customer.account.wishlist.add-to-cart' | trans }}">
                                                 {% include atom('icon') with {
                                                     data: {
                                                         name: 'cart-plus',
@@ -137,7 +160,7 @@
 
                                         <form id="{{ formName }}" class="col" name="{{ formName }}" method="POST" action="{{ path('wishlist/move-to-cart', {sku: item.sku, 'wishlist-name': data.wishlistName}) }}">
                                             <input type="hidden" name="wishlist_move_to_cart_form[_token]" value="{{ csrf_token('wishlist_move_to_cart_form') }}">
-                                            <button class="link" title="{{ 'customer.account.wishlist.add-to-cart' | trans }}">
+                                            <button class="link js-wishlist-move-to-cart" title="{{ 'customer.account.wishlist.add-to-cart' | trans }}">
                                                 {% include atom('icon') with {
                                                     data: {
                                                         name: 'cart-plus',
@@ -228,4 +251,9 @@
             </tbody>
         </table>
     </div>
+
+    {# The wishlist items carry no category path: the traceable events add it to the tracking details of each line from here, read for the whole list at once. #}
+    {% block productTrackingDetails %}
+        {% widget 'ProductTrackingDetailsWidget' args [data.wishlistItems] only %}{% endwidget %}
+    {% endblock %}
 {% endblock %}

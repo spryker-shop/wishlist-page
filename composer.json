@@ -13,7 +13,7 @@
         "spryker/customer": "^7.4.0",
         "spryker/glossary-storage": "^1.9.1",
         "spryker/kernel": "^3.52.0",
-        "spryker/product-storage": "^1.1.0",
+        "spryker/product-storage": "^1.59.0",
         "spryker/symfony": "^3.1.0",
         "spryker/transfer": "^3.25.0",
         "spryker/wishlist": "^8.3.0"
@@ -32,7 +32,8 @@
         "spryker-shop/product-configuration-wishlist-widget": "Add the module if you want to use ProductConfigurationWishlistItemDisplayWidget or ProductConfigurationWishlistPageButtonWidget.",
         "spryker-shop/product-discontinued-widget": "If you want to use ProductDiscontinuedWidget or ProductDiscontinuedWidgetPlugin.",
         "spryker/router": "Use this module when you want to use the Router.",
-        "spryker/silex": "Use this module when using plugins that need Silex dependencies."
+        "spryker/silex": "Use this module when using plugins that need Silex dependencies.",
+        "spryker-shop/traceable-event-widget": "If you want the products to carry their tracking details (ProductTrackingDetailsWidget) for the traceable events."
     },
     "autoload": {
         "psr-4": {

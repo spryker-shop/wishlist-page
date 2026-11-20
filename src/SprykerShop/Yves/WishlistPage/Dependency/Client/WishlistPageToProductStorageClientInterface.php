@@ -26,4 +26,12 @@ interface WishlistPageToProductStorageClientInterface
      * @return array<mixed>|null
      */
     public function findProductConcreteStorageData(int $idProductConcrete, string $localeName): ?array;
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ProductViewTransfer> $productViewTransfers
+     * @param string $localeName
+     *
+     * @return array<\Generated\Shared\Transfer\ProductViewTransfer>
+     */
+    public function expandProductViewTransfersWithProductAbstract(array $productViewTransfers, string $localeName): array;
 }

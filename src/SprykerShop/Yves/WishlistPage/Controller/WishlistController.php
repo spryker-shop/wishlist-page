@@ -100,6 +100,9 @@ class WishlistController extends AbstractController
         $wishlistOverviewResponseTransfer = $this->getWishlistOverview($request, $wishlistName);
 
         $wishlistItems = $this->getWishlistItems($wishlistOverviewResponseTransfer);
+        $wishlistItems = $this->getFactory()
+            ->getProductStorageClient()
+            ->expandProductViewTransfersWithProductAbstract($wishlistItems, $this->getLocale());
 
         $addAllAvailableProductsToCartForm = $this->createAddAllAvailableProductsToCartForm($wishlistOverviewResponseTransfer);
 

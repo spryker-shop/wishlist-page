@@ -21,13 +21,13 @@
 } %}
 
 {% block customerContent %}
-    <div class="box">
+    <div class="box js-wishlist-detail">
         {% if data.wishlistItems is not empty %}
             {{ form_start(data.addAllProductsToCart, {
                 action: path('wishlist/move-all-available-to-cart', { wishlistName: data.wishlistName }),
                 attr: { class: 'float-right' }
             }) }}
-                <button type="submit" class="button">
+                <button type="submit" class="button js-wishlist-move-all-to-cart">
                     {% include atom('icon') with {
                         data: {
                             name: 'cart-plus'
@@ -66,4 +66,53 @@
             } only %}
         {% endif %}
     </div>
+{% endblock %}
+
+{% block eventTracker %}
+    {# Moving wishlist items to the cart adds them to the cart. #}
+    {% set events = {
+        list: events.list | merge([
+            {
+                event: 'ADD_TO_CART',
+                name: 'click',
+                triggers: [
+                    {
+                        selector: '.js-wishlist-move-to-cart',
+                        groupAs: {
+                            key: 'products',
+                            toArray: true,
+                        },
+                        data: {
+                            details: {
+                                selector: 'tr[tracking-details]',
+                                closest: true,
+                                attribute: 'tracking-details',
+                                flatten: true,
+                            },
+                        },
+                    },
+                    {
+                        selector: '.js-wishlist-move-all-to-cart',
+                        data: {
+                            wishlistItems: {
+                                selector: '.js-wishlist-detail',
+                                closest: true,
+                                flatten: true,
+                                composed: {
+                                    products: {
+                                        multi: true,
+                                        selector: 'tr[tracking-details]',
+                                        attribute: 'tracking-details',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                ],
+            },
+        ]),
+        data: events.data,
+    } %}
+
+    {{ parent() }}
 {% endblock %}

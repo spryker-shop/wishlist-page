@@ -45,4 +45,15 @@ class WishlistPageToProductStorageClientBridge implements WishlistPageToProductS
     {
         return $this->productStorageClient->findProductConcreteStorageData($idProductConcrete, $localeName);
     }
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ProductViewTransfer> $productViewTransfers
+     * @param string $localeName
+     *
+     * @return array<\Generated\Shared\Transfer\ProductViewTransfer>
+     */
+    public function expandProductViewTransfersWithProductAbstract(array $productViewTransfers, string $localeName): array
+    {
+        return $this->productStorageClient->expandProductViewTransfersWithProductAbstract($productViewTransfers, $localeName);
+    }
 }
